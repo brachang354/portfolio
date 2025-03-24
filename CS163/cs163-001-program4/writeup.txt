@@ -1,0 +1,17 @@
+Bradley Chang CS163_001 Program #4 Efficiency writeup
+
+a. How well did the data structure selected perform for the assigned application?
+	The binary search tree was used. It performed pretty well, it allowed for a fast way to insert, remove, display, retrieve, and even display a range of the data. It’s also flexible in its size.
+	
+b. Would a different data structure work better? If so, which one and why…
+	A 2-3 tree or a red-black tree could’ve been used to maintain a more balanced tree if sorted data was inserted into the tree.
+
+c. What was efficient about your design and use of the data structure?
+	The insert, remove, and retrieve functions were all used efficiently as they all only needed to travel down one path of the tree to perform their operation, allowing for a logarithmic performance. 
+
+d. What was not efficient?
+	The display functions would still have a linear or O(N) performance as they would need to perform an action at each node that they need to display. There is also the problem of sorted data being fed into the tree. This would essentially turn the BST into LLL with more memory overhead because of the left and right pointers and now O(N) performance. Even with randomized data being fed into the tree, there is no guarantee that the tree will be balanced and could very much be 
+
+e. What would you do differently if you had more time to solve the problem?
+	I would implement a function to load data from an external file so I can test what the tree could look like with large amounts of data. I would also want to figure out how to make my display function show at which height each node in the tree is at so I can get a way to visualize the structure of my tree.
+

@@ -1,0 +1,22 @@
+Bradley Chang, CS163_001, Program #3 Efficiency writeup.
+
+a. How well did the data structure selected perform for the assigned application?
+    	The data structure selected was a hash table of head pointers for a LLL as a collision resolution technique. It performed pretty well as it allowed for a
+fast way to add, remove, and search for data, while also being flexible for our data's needs due to each index in the table having a LLL.
+
+b. Would a different data structure work better? If so, which one and why...
+	I think a binary search tree could work as a better data structure. This would potentially allow us to display the data in a sorted order, like alphabetically for example. This unfortunately cannot be done with a hash table due to the nature of a hash function which would place data items in seemingly random indices. 
+
+c. What was efficient about your design and use of the data structure?
+	Adding items into the table and removing items from the table were both efficient operations that are near instantaneous and done with not too many lines of code. The search function for searching an animal by name was also pretty efficient, as it was able to make use of the hash function for instant access into the index it was located in, and only required one traversal through that index’s LLL.
+
+d. What was not efficient?
+Both the display all function and the display by location functions were inefficient as they both had two nested loops within them meaning they had to first loop through the table indices, then also loop through to traverse the LLL inside each index. The hash function could also be better. From my testing of 45 data items and a table size of 31, the maximum amount of collisions was 5, and there were about 9 indices that contained no data items. 
+
+e. What would you do differently if you had more time to solve the problem?
+	There were some areas in the code that could’ve been cleaner. For instance in some of the menu options, and function implementations, I was creating many dynamic char arrays and at the end deleting them all when all of that could’ve been done in a simple function. I would’ve also wanted to work on making a better hash function that would more evenly distribute my data.
+
+f. Hash table experiments.
+	Important note: when testing out my search functions I was annoyed for a while on why it wasn’t working when I was sure that my code was correct, but then I noticed that in my data text file, all of the animal names had an extra space at the end of it and once I included the extra space it worked fine. 
+I also did some tests on the hash table size by setting it a size of 32 which is a power of 2. I expected that it would cause all my data to collide at only even numbers or numbers that were a power of 2 but that didn’t happen. The data still seemed to spread out evenly, and my maximum collisions were actually smaller, down to 3, and the amount of empty indices went down to 6.
+

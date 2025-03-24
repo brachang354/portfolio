@@ -1,0 +1,17 @@
+Bradley Chang CS163_001 Program #5 Efficiency writeup
+
+a. How well did the data structure selected perform for the assigned application?
+	The data structure selected was a graph and it performed well for our application of storing locations and their description and being able to connect locations to each other directionally.
+
+b. Would a different data structure work better? If so, which one and why…
+	I don’t think another data structure would work better since a graph allows us to connect the locations to each other based on their relationship and no other data structure can allow for this kind of connection.
+
+c. What was efficient about your design and use of the data structure?
+	Inserting locations into the graph as vertices, and connecting up vertices had an O(N) performance. We only need to traverse once to find an empty spot to put a vertex, and when we need to traverse to find matching vertices to connect.
+
+d. What was not efficient?
+	The display function was not very efficient as it would have a O(N^2) performance due to its double repetitiveness of looping through the indices, and traversing the edge list in each index.
+
+e. What would you do differently if you had more time to solve the problem?
+	I would like to make my vertex insert work similar to that of a stack since I would like to take advantage of an array’s ability to have direct access to its indices.
+

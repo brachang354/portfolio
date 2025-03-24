@@ -1,0 +1,28 @@
+Bradley Chang CS163_001 Program #1
+
+a. How well did the data structure selected perform for the assigned application?
+	The data structure was a LLL that contained a head pointer to another LLL. For this application
+I think it performed well because it allowed us to grow and stretch the category list as well as the clue
+list if we needed to add more clues.
+	
+b. Would a different data structure work better? If so, which one and why...
+	I don't think any other data structure would work better for this program. Having a LLL of categories
+allows us to have as many categories as we want, and having a LLL in each of the category nodes allows us to
+have as many or few clues as we want for each category. Since this is an ADT for a trivia game, runtime performance
+is not as important as having the flexibility of a LLL of LLLs.
+
+c. What was efficient about your design and use of the data structure?
+	One thing that was efficient with my data structure is the insertion of new data. I was able to add
+as many new categories as needed, and as many new clues as needed without much problems. 	
+
+d. What was not efficient?
+	One thing that was not efficient was the removal of my data. I believe I had a segmentation fault
+when I tried to remove a category at the end of the list. Also, I was not able to implement the deletion of
+my dynamic arrays in the destructor.
+
+e. What would you do differently if you had more time to solve the problem?
+	I would've liked to fully implement the read-in from external data file function, it would've 
+made testing my code a lot faster. I also wanted to implement one of my functions recursively. As far as the
+implementation of non-required functions would go, I would've liked to add a remove clue function and a sort function
+that sorted the clues by prize amounts.
+

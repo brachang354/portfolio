@@ -1,0 +1,34 @@
+Bradley Chang CS 163 Program #2 Writeup
+a. How well did the data structure selected perform for the assigned application?
+	For the stack ADT, the data structure was a LLL of arrays. I say it performed pretty well, it was 
+able to pop and push quickly with no traversal required, and also peek at the most recent item instantly.
+	For the queue ADT, the data structure was a CLL. It performed well with having instant access to the front
+and back of the list. It was able to enqueue and dequeue items instantly, as well as peek instantly as well. 
+
+b. Would a different data structure work better? If so, which one and why...
+	For the stack ADT, I don't think there would be a better data structure than a LLL of arrays because 
+the advantage of a LLL of arrays is that it has the stretchability of a LLL while also having less memory 
+overhead similar to an array.
+	For the queue ADT, I also don't think there would be a better data structure that a CLL. This is because
+a CLL has direct access to the front and last node in the list from just one rear pointer, which makes insertion
+and removal very effiecient. A LLL would need to have a head and a tail pointer to achieve similar efficiency to 
+a CLL and an array would have problems with shifting as we inserted more items into it. 
+ 
+c. What was efficient about your design and use of the data structure?
+	For the stack ADT, pushing and popping data items was near instantaneous because the head was
+always pointing to the newest node and I would have direct access to the array inside of it to put data in, and 
+when I needed to pop, I would need to only decrement the top index of the array by 1 or remove the node which 
+I have direct access to because head is always pointing to the newest node to be deleted. 
+	For the queue ADT, the most efficient part was enqueuing and dequeuing. Whenever something needed to
+be enqueued, a new node would always be inserted at the end of the list or at rear, no traversing necessary.
+And whenever something needed to be dequeued, it would be removed at the beginning of the list or at rear->next, also
+with no traversal necessary.	
+
+d. What was not efficient?
+	What was not efficient was the display functions for both the stack ADT and the queue ADT. They both
+require traversing through the entire list sequentially to display all of the data.	
+
+e. What would you do differently if you had more time to solve the problem?
+	I would've liked to implement all repetitive functions recursively. I was only able to make
+the display function for the queue ADT work recursively, but I would've also liked to do the same with the
+display function of the stack ADT and all destructors for both the queue ADT and stack ADT.
