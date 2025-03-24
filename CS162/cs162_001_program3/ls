@@ -1,0 +1,172 @@
+[1mdiff --git a/a.out b/a.out[m
+[1mindex 3088351..e59854e 100755[m
+Binary files a/a.out and b/a.out differ
+[1mdiff --git a/chang-bradley-program3.cpp b/chang-bradley-program3.cpp[m
+[1mindex 8c1834e..db1b307 100644[m
+[1m--- a/chang-bradley-program3.cpp[m
+[1m+++ b/chang-bradley-program3.cpp[m
+[36m@@ -16,7 +16,8 @@[m [mconst int SIZE {21};[m
+ const int EVENT {31};[m
+ const int NAME {31};[m
+ const int FAN {51};[m
+[31m-[m
+[32m+[m[32mconst int MAX {255};[m
+[32m+[m[32mconst int OPT {2};[m
+ //Constant file name[m
+ const char outfile[] = "eventdata.txt";[m
+ [m
+[36m@@ -31,34 +32,78 @@[m [mstruct event[m
+ //Prototypes go here[m
+ void inputEventInfo(event & to_enter);[m
+ void display(event & eventInfo);[m
+[31m-[m
+[32m+[m[32mvoid writeExternal(event & eventInfo);[m
+[32m+[m[32mvoid displayExternal();[m
+ //Main body[m
+ int main()[m
+ {[m
+ [m
+[31m-	//Creating variable for structs here[m
+[32m+[m	[32m//Creating variables here[m
+ 	event eventInfo;[m
+[31m-[m
+[32m+[m	[32mint option {0};[m
+[32m+[m	[32mbool again;[m[41m	[m
+[32m+[m	[32mchar againOpt{' '};[m
+ 	//Calling functions here[m
+[31m-	inputEventInfo(eventInfo);[m
+[31m-	display(eventInfo);[m
+[31m-[m
+[31m-	//Writing to external data file[m
+[31m-	ofstream fileOut;	//File variable for output[m
+[32m+[m	[32mcout << "Welcome to the comic con event planner.\n"[m
+[32m+[m		[32m<< "With this program you can input information about an event and store it\n"[m
+[32m+[m		[32m<< "in an external data file, or display all information from the file." << endl;[m
+[32m+[m	[32magain = true;[m
+ 	[m
+[31m-	fileOut.open(outfile, ios::app);	//Opening data file[m
+[31m-	if (fileOut)[m
+[32m+[m	[32mwhile (again == true)[m
+ 	{[m
+[31m-		fileOut << eventInfo.eventName << ":"	//Outputting event info to external file[m
+[31m-			<< eventInfo.celeb << ":"[m
+[31m-			<< eventInfo.fanFav << endl;[m
+[31m-[m
+[31m-		fileOut.close();	//Closing external file[m
+[31m-		fileOut.clear();[m
+[31m-	}[m
+[31m-[m
+[32m+[m		[32mcout << "Choose what you like to do.\n"[m
+[32m+[m			[32m<< "1. Input information\n"[m
+[32m+[m			[32m<< "2. Display contents\n"[m
+[32m+[m			[32m<< "3. Quit" << endl;[m
+[32m+[m		[32mcout << "Option: ";[m
+[32m+[m		[32mcin >> option;[m
+[32m+[m		[32mcin.ignore(100, '\n');[m
+ 	[m
+[31m-[m
+[32m+[m		[32mif(option == 1)[m
+[32m+[m		[32m{[m
+[32m+[m			[32mcout << "Inputting information" << endl;[m[41m	[m
+[32m+[m			[32minputEventInfo(eventInfo);[m
+[32m+[m			[32mdisplay(eventInfo);[m
+[32m+[m			[32mwriteExternal(eventInfo);[m
+[32m+[m
+[32m+[m			[32mcout << "Run program again? (y/n): ";[m
+[32m+[m			[32mcin >> againOpt;[m
+[32m+[m			[32mcin.ignore(100, '\n');[m
+[32m+[m			[32mif (againOpt == 'y')[m
+[32m+[m			[32m{[m
+[32m+[m				[32magain = true;[m
+[32m+[m			[32m}[m
+[32m+[m			[32mif (againOpt == 'n')[m
+[32m+[m			[32m{[m
+[32m+[m				[32magain = false;[m
+[32m+[m				[32mcout << "Exiting program" << endl;[m
+[32m+[m			[32m}[m
+[32m+[m		[32m}[m
+[32m+[m		[32mif(option == 2)[m
+[32m+[m		[32m{[m
+[32m+[m			[32mcout << "Displaying file contents" << endl;[m
+[32m+[m			[32mdisplayExternal();[m
+[32m+[m
+[32m+[m			[32mcout << "Run program again? (y/n): ";[m
+[32m+[m			[32mcin >> againOpt;[m
+[32m+[m			[32mcin.ignore(100, '\n');[m
+[32m+[m			[32mif (againOpt == 'y')[m
+[32m+[m			[32m{[m
+[32m+[m				[32magain = true;[m
+[32m+[m			[32m}[m
+[32m+[m			[32mif (againOpt == 'n')[m
+[32m+[m			[32m{[m
+[32m+[m				[32magain = false;[m
+[32m+[m				[32mcout << "Exiting program" << endl;[m
+[32m+[m			[32m}[m
+[32m+[m
+[32m+[m		[32m}[m
+[32m+[m		[32mif(option == 3)[m
+[32m+[m		[32m{[m
+[32m+[m			[32mcout << "Exiting program" << endl;[m
+[32m+[m			[32magain = false;[m
+[32m+[m		[32m}[m
+[32m+[m	[32m}[m
+ [m
+ 	return 0;[m
+ }[m
+[36m@@ -86,4 +131,46 @@[m [mvoid display(event & eventInfo)[m
+ 	<< "Celebrity name: " << eventInfo.celeb << endl[m
+ 	<< "Fan Favorite: " << eventInfo.fanFav << endl;[m
+ }[m
+[32m+[m[32mvoid writeExternal(event & eventInfo)[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m	[32m//Writing to external data file[m
+[32m+[m	[32mofstream fileOut;	//File variable for output[m
+[32m+[m[41m	[m
+[32m+[m	[32mfileOut.open(outfile, ios::app);	//Opening data file[m
+[32m+[m	[32mif (fileOut)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mfileOut << eventInfo.eventName << ":"	//Outputting event info to external file[m
+[32m+[m			[32m<< eventInfo.celeb << ":"[m
+[32m+[m			[32m<< eventInfo.fanFav << endl;[m
+[32m+[m
+[32m+[m		[32mfileOut.close();	//Closing external file[m
+[32m+[m		[32mfileOut.clear();[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[32m+[m[32mvoid displayExternal()[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m	[32m//Opening external data file to display contents[m
+[32m+[m	[32mchar line[MAX];[m
+[32m+[m	[32mchar delimiter;[m
+[32m+[m	[32mifstream fileIn;	//File variable for input[m
+[32m+[m	[32mfileIn.open(outfile);[m
+[32m+[m
+[32m+[m	[32mif (fileIn)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mfileIn.get(line, MAX, '\n');[m
+[32m+[m		[32mwhile (fileIn && !fileIn.eof())[m
+[32m+[m		[32m{[m
+[32m+[m			[32m//delimiter = fileIn.get();[m
+[32m+[m			[32mcout << line << endl;[m
+[32m+[m			[32mfileIn.ignore(100,'\n');[m
+[32m+[m
+[32m+[m			[32mfileIn.get(line, MAX, '\n');[m
+[32m+[m
+[32m+[m		[32m}[m
+[32m+[m	[32mfileIn.close();[m
+[32m+[m	[32mfileIn.clear();[m[41m	[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+ [m
+[1mdiff --git a/eventdata.txt b/eventdata.txt[m
+[1mindex e3924c4..1bddcd7 100644[m
+[1m--- a/eventdata.txt[m
+[1m+++ b/eventdata.txt[m
+[36m@@ -1,2 +1,3 @@[m
+[31m-The Boys meetup:Karl Urban:Billy Butcher[m
+[31m-John Wick Meetup:Keanu Reeves:John Wick[m
+[32m+[m[32mMarvel Meetup:Tom Holland:SpiderMan[m
+[32m+[m[32mThe Boys Meetup:Karl Urban:Billy Butcher[m
+[32m+[m[32mDC Metup:Christian Bale:Batman[m
