@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Song List</h2>
+    <!-- This is where all song entries will show up-->
+    <h3>Add a new song <a href="{{ url_for('sign') }}">here</a></h3>
+    <h3>Entries</h3>
+    {% for entry in entries %}
+        <p class=entry>
+        <!--    {{ entry.name }} &lt;{{ entry.email }}&gt;
+	    <br>signed on {{ entry.signed_on }}<br>
+	    {{ entry.message }}-->
+        Song Title: {{ entry.song_title }}
+        <br>Genre: {{ entry.genre }}
+        <br>Artist: {{ entry.artist }}
+        <br>Date Released: {{ entry.date_released }}
+        </p>
+    {% endfor %}
+
+{% endblock %}

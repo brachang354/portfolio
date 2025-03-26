@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Anime Pictures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #333; /* Dark Gray */
+            color: white; /* White Text */
+        }
+        input, button {
+            background-color: #555; /* Darker Gray for Inputs */
+            color: white;
+            border: 1px solid #777;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #777;
+        }
+        #image-container {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Anime Pictures</h1>
+    <p>
+        <small>Created by Bradley Chang with the use of Danbooru API</small>
+    </p>
+    <label for="image-tag">Image Tag:</label>
+    <input type="text" id="image-tag" placeholder="Enter image tag">
+    <button onclick="fetchImage()">Get Image</button>
+    <p>
+        <small>Use '_' for spaces for tags. Multiple tags can be combined with a '+'. Invalid or blank tags will just load a random image</small>
+    </p>
+    <p>
+        <small>Example: "frieren+fern_(sousou_no_frieren)"</small>
+    </p>
+    <p>
+        <small>Images may take a few seconds to load</small>
+    </p>
+
+    <div id="image-container">
+        <img id="random-image" src="" alt="Random Image">
+    </div>
+
+    <script>
+        function fetchImage() {
+            let tag = document.getElementById("image-tag").value;
+            let url = "/get_image?tag=" + encodeURIComponent(tag);
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("random-image").src = data.image_url;
+                })
+                .catch(error => console.error("Error fetching image:", error));
+        }
+    </script>
+
+</body>
+</html>
+

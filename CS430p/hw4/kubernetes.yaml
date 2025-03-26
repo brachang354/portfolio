@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: songlist-replicas
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: songlist
+        tier: frontend
+    spec:
+      containers:
+      - name: songlist-app
+        image: gcr.io/cloud-chang-brachang/gcp_sl
+        env:
+        - name: PROCESSES
+          value: songlist
+        - name: PORT
+          value: "8000"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: songlist-lb
+  labels:
+    app: songlist
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    app: songlist
+    tier: frontend

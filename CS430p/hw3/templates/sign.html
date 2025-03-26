@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- <h2>Sign Guestbook</h2> -->
+    <h2>Add Song Entry</h2>
+    <form action="{{ url_for('sign') }}" method=post>
+	<!-- <p class="heading">Name: <input type=text name=name></p> -->
+	<!-- <p class="heading">Email: <input type=text name=email></p> -->
+
+    <!-- This is where we get all the input for all the entries.
+     They should all show up with a text box for input -->
+    <p class="heading">Song Title: <input type=text name=song_title></p>
+	<p class="heading">Genre: <input type=text name=genre></p>
+    <p class="heading">Artist: <input type=text name=artist></p>
+    <p class="heading">Date Released: <input type=text name=date_released></p>
+    <!--    <p class="heading">Message: -->
+	<!-- <textarea rows=5 cols=50 name=message></textarea></p> -->
+	<p><input type=submit value=Add></p>
+    </form>
+{% endblock %}
