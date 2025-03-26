@@ -1,0 +1,61 @@
+%import common.INT -> INT
+%import common.CNAME -> ID
+%import common.WS
+%import common.ESCAPED_STRING -> STRING
+
+%ignore WS
+
+?expr0: expr ";" expr0 -> seq
+    | expr
+
+?a_expr: ID ":=" expr -> assign
+    | expr
+
+?expr: "show" a_expr -> show
+    |"If" expr "then" expr "else" expr -> if_
+    | a_expr
+    | expr_bool
+
+?expr_bool: expr_bool "||" term_bool -> or_
+    | term_bool
+
+?term_bool: term_bool "&&" factor_bool -> and_
+    | factor_bool
+
+?factor_bool: "!" factor_bool -> not_
+    | expr_rel
+
+?expr_rel: expr_rel "==" expr1 -> equal
+    | expr_rel "<" expr1 -> less_than
+    | expr1
+
+?expr1: expr1 "+" term1  -> plus
+    | expr1 "-" term1 -> minus
+    | term1
+
+?term1: term1 "*" expr_turt -> times
+    | term1 "/" expr_turt -> divide
+    | expr_turt
+
+?expr_turt: expr_turt "++" factor1 -> append 
+    | expr_turt "@" factor1 -> repeat 
+    | expr_turt "#" factor1 -> rotate
+    | expr_turt "~~" factor1 -> set_size
+    | expr_turt "%%" factor1 -> add_color
+    | factor1
+
+?factor1: "-" factor1  -> neg
+       |  atom
+
+?atom: ID  -> id
+    | INT -> int
+    | STRING -> str
+    | "^" INT -> forward
+    | "<" INT -> left 
+    | ">" INT -> right
+    | "~" INT -> pen_size
+    | "%" STRING -> add_color
+    | atom "(" expr ")" -> app
+    | "(" expr ")"    
+    | "let" ID "=" expr "in" expr "end" -> let
+    | "letfun" ID "(" ID ")" "=" expr "in" expr "end" -> letfun
